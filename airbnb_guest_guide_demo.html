@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sea View Loutraki · Guest Guide Demo</title>
+  <style>
+    :root{
+      --bg:#f6f7fb;
+      --card:#ffffff;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --accent:#0f766e;
+      --accent-soft:#dff7f4;
+      --line:#e5e7eb;
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:linear-gradient(180deg,#eff6ff 0%, var(--bg) 30%, var(--bg) 100%);
+      color:var(--text);
+      line-height:1.55;
+    }
+    .wrap{
+      max-width:900px;
+      margin:0 auto;
+      padding:20px 16px 48px;
+    }
+    .hero{
+      background:linear-gradient(135deg,#0f766e 0%, #155e75 100%);
+      color:#fff;
+      border-radius:24px;
+      padding:28px 22px;
+      box-shadow:var(--shadow);
+      margin-bottom:18px;
+    }
+    .eyebrow{
+      display:inline-block;
+      background:rgba(255,255,255,.18);
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:13px;
+      margin-bottom:14px;
+    }
+    h1{
+      margin:0 0 8px 0;
+      font-size:30px;
+      line-height:1.15;
+    }
+    .subtitle{
+      margin:0;
+      font-size:16px;
+      opacity:.95;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:16px;
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow:var(--shadow);
+    }
+    .card h2{
+      margin:0 0 12px 0;
+      font-size:20px;
+    }
+    .card h3{
+      margin:16px 0 8px;
+      font-size:16px;
+    }
+    .muted{color:var(--muted)}
+    ul{
+      padding-left:20px;
+      margin:10px 0;
+    }
+    li{margin:6px 0}
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:12px;
+    }
+    .pill{
+      background:var(--accent-soft);
+      color:var(--accent);
+      border-radius:999px;
+      padding:8px 12px;
+      font-size:14px;
+      font-weight:600;
+    }
+    .notice{
+      border-left:4px solid var(--accent);
+      background:#f8fffe;
+      padding:12px 14px;
+      border-radius:12px;
+      margin-top:10px;
+    }
+    .footer{
+      text-align:center;
+      color:var(--muted);
+      margin-top:18px;
+      font-size:14px;
+    }
+    .full{grid-column:1 / -1}
+    @media (max-width:700px){
+      .grid{grid-template-columns:1fr}
+      h1{font-size:26px}
+      .hero{padding:22px 18px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="eyebrow">Demo · Digital Guest Booklet</div>
+      <h1>Sea View Loutraki</h1>
+      <p class="subtitle">Καλώς ήρθατε. Αυτό είναι ένα δείγμα mobile οδηγού για επισκέπτες Airbnb, σχεδιασμένο ώστε να διαβάζεται εύκολα από κινητό.</p>
+      <div class="pill-row">
+        <div class="pill">Wi‑Fi</div>
+        <div class="pill">Check‑in / Check‑out</div>
+        <div class="pill">House Rules</div>
+        <div class="pill">Useful Info</div>
+        <div class="pill">Local Tips</div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>Check‑in / Check‑out</h2>
+        <ul>
+          <li><strong>Check‑in:</strong> από 15:00</li>
+          <li><strong>Check‑out:</strong> έως 11:00</li>
+          <li>Παρακαλούμε να τηρούνται οι ώρες, εκτός αν έχει προηγηθεί συνεννόηση.</li>
+        </ul>
+        <div class="notice">
+          Για ειδικά αιτήματα άφιξης ή αναχώρησης, επικοινωνήστε έγκαιρα με τον οικοδεσπότη.
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Wi‑Fi</h2>
+        <h3>Στοιχεία σύνδεσης</h3>
+        <ul>
+          <li><strong>Δίκτυο:</strong> SeaView_Loutraki</li>
+          <li><strong>Κωδικός:</strong> 12345678demo</li>
+        </ul>
+        <p class="muted">Στην τελική έκδοση μπορούν να μπουν τα πραγματικά στοιχεία ή QR code για αυτόματη σύνδεση.</p>
+      </article>
+
+      <article class="card">
+        <h2>Κανόνες Σπιτιού</h2>
+        <ul>
+          <li>Απαγορεύεται το κάπνισμα στον εσωτερικό χώρο.</li>
+          <li>Δεν επιτρέπονται πάρτι ή δυνατή μουσική.</li>
+          <li>Ώρες κοινής ησυχίας σύμφωνα με τον κανονισμό.</li>
+          <li>Παρακαλούμε να σβήνετε κλιματισμό και φώτα όταν λείπετε.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Χρήσιμες Οδηγίες</h2>
+        <ul>
+          <li>Κλειδιά: αφήστε τα στο σημείο που θα υποδειχθεί κατά το check‑out.</li>
+          <li>Σκουπίδια: χρησιμοποιήστε τους κάδους της πολυκατοικίας ή του δρόμου.</li>
+          <li>Συσκευές: οι βασικές οδηγίες μπορούν να ενσωματωθούν εδώ αναλυτικά.</li>
+        </ul>
+      </article>
+
+      <article class="card full">
+        <h2>Προτάσεις για Λουτράκι</h2>
+        <div class="grid">
+          <div>
+            <h3>Θάλασσα & βόλτα</h3>
+            <ul>
+              <li>Παραλιακός πεζόδρομος</li>
+              <li>Καφές με θέα στη θάλασσα</li>
+              <li>Σύντομη βόλτα στο κέντρο</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Χρήσιμα σημεία</h3>
+            <ul>
+              <li>Mini market / super market</li>
+              <li>Φαρμακείο</li>
+              <li>Ταξί / μετακίνηση</li>
+            </ul>
+          </div>
+        </div>
+        <p class="muted">Στην πλήρη έκδοση μπορούν να μπουν πραγματικά σημεία, χάρτης, τηλέφωνα και προτεινόμενα καταστήματα.</p>
+      </article>
+    </section>
+
+    <div class="footer">
+      Demo έκδοση για αξιολόγηση εμφάνισης και δομής περιεχομένου.
+    </div>
+  </div>
+</body>
+</html>
