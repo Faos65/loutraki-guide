@@ -1,0 +1,491 @@
+import { useMemo, useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { MapPin, Wifi, Phone, Clock3, Home, Waves, Search, Languages, ShieldCheck, KeyRound, Refrigerator, WashingMachine, AirVent, FlameKindling, AlertTriangle } from "lucide-react";
+
+export default function LoutrakiGuestGuide() {
+  const [language, setLanguage] = useState("en");
+  const [query, setQuery] = useState("");
+
+  const content = {
+    en: {
+      propertyName: "Loutraki Sea Escape",
+      subtitle: "Guest Guide for a 62 sqm sea-view apartment on the 5th floor",
+      welcomeTitle: "Welcome",
+      welcomeText:
+        "Welcome to our apartment in Loutraki. This digital guide is designed to give guests quick access to all essential information during their stay, from Wi‑Fi and house rules to appliance instructions and local recommendations.",
+      quickFacts: {
+        wifiName: "CHRYSOULA_GUEST_WIFI",
+        wifiPassword: "loutraki2026",
+        checkIn: "15:00 onwards",
+        checkOut: "By 11:00",
+        host: "Chrysoula",
+        supportPhone: "+30 69X XXX XXXX",
+        address: "Loutraki, Korinthia",
+      },
+      tabs: {
+        rules: "House Rules",
+        appliances: "Appliances",
+        area: "Area Guide",
+        safety: "Safety & Check-out",
+      },
+      rules: [
+        "No smoking inside the apartment.",
+        "Quiet hours apply from 15:00–17:30 and 23:00–07:00.",
+        "Please respect the neighbors and the building regulations.",
+        "Parties and events are not allowed.",
+        "Turn off air conditioning and lights when leaving the apartment.",
+        "Close the balcony doors before going out, especially on windy days.",
+      ],
+      appliances: [
+        {
+          title: "Washing Machine",
+          icon: "washing",
+          summary: "Simple step-by-step use for guest laundry.",
+          steps: [
+            "Load clothes without overfilling the drum.",
+            "Add detergent to the correct compartment.",
+            "Choose the appropriate program.",
+            "Press Start.",
+            "When finished, leave the door slightly open to ventilate.",
+          ],
+        },
+        {
+          title: "Kitchen & Oven",
+          icon: "oven",
+          summary: "Basic cooking and oven usage guidance.",
+          steps: [
+            "Select the desired cooking function.",
+            "Set the temperature as needed.",
+            "Use oven-safe cookware only.",
+            "Turn all controls fully off after use.",
+          ],
+        },
+        {
+          title: "Air Conditioning",
+          icon: "air",
+          summary: "Efficient cooling and heating use.",
+          steps: [
+            "Use the remote control to power on the unit.",
+            "Recommended summer setting: 25–26°C.",
+            "Keep windows and balcony doors closed while operating.",
+            "Please switch it off when leaving the apartment.",
+          ],
+        },
+        {
+          title: "Water Heater",
+          icon: "heater",
+          summary: "Hot water operation before shower use.",
+          steps: [
+            "Switch on the water heater 20–30 minutes before showering.",
+            "Switch it off after use for safety and energy efficiency.",
+          ],
+        },
+        {
+          title: "Refrigerator",
+          icon: "fridge",
+          summary: "Storage and temperature notes.",
+          steps: [
+            "Please keep the refrigerator door closed properly.",
+            "Do not force temperature settings unless necessary.",
+            "Avoid placing hot food directly inside.",
+          ],
+        },
+      ],
+      areaGuide: [
+        "Beachfront promenade within short walking distance.",
+        "Supermarket: add nearest preferred store here.",
+        "Pharmacy: add exact address and opening hours here.",
+        "Bakery / coffee options: add favorite local recommendations here.",
+      ],
+      safety: {
+        emergencyTitle: "Emergency & Useful Contacts",
+        contacts: [
+          "Host support: +30 69X XXX XXXX",
+          "European emergency number: 112",
+          "Police: 100",
+          "Ambulance: 166",
+          "Fire service: 199",
+        ],
+        checkoutTitle: "Before Check-out",
+        checkout: [
+          "Wash any used dishes and leave the kitchen tidy.",
+          "Turn off air conditioning, oven, and lights.",
+          "Dispose of rubbish in the designated bins.",
+          "Make sure windows and balcony doors are closed.",
+          "Return keys exactly as instructed.",
+        ],
+      },
+      searchPlaceholder: "Search Wi‑Fi, check-out, washing machine...",
+      cta: "This prototype can later be connected to an easy editing workflow for the host.",
+      editPanelTitle: "How this will work for the host",
+      editPanelText:
+        "My recommended production model is a simple guest website with structured sections, bilingual content and QR access. At the next stage, we can connect the text to a very simple editing layer so Chrysoula can update Wi‑Fi, rules, appliance instructions and local tips without touching code.",
+    },
+    el: {
+      propertyName: "Azure Horizon Loutraki",
+      subtitle: "Οδηγός επισκέπτη για διαμέρισμα 62 τ.μ. στον 5ο όροφο με θέα στη θάλασσα",
+      welcomeTitle: "Καλώς ήρθατε",
+      welcomeText:
+        "Καλώς ήρθατε στο διαμέρισμά μας στο Λουτράκι. Αυτός ο ψηφιακός οδηγός έχει σχεδιαστεί ώστε ο επισκέπτης να βρίσκει άμεσα όλες τις βασικές πληροφορίες της διαμονής του, από το Wi‑Fi και τους κανόνες του σπιτιού μέχρι οδηγίες για τις συσκευές και χρήσιμες τοπικές πληροφορίες.",
+      quickFacts: {
+        wifiName: "CHRYSOULA_GUEST_WIFI",
+        wifiPassword: "loutraki2026",
+        checkIn: "Από 15:00",
+        checkOut: "Έως 11:00",
+        host: "Χρυσούλα",
+        supportPhone: "+30 69X XXX XXXX",
+        address: "Λουτράκι, Κορινθία",
+      },
+      tabs: {
+        rules: "Κανόνες Σπιτιού",
+        appliances: "Συσκευές",
+        area: "Περιοχή",
+        safety: "Ασφάλεια & Αναχώρηση",
+      },
+      rules: [
+        "Απαγορεύεται το κάπνισμα μέσα στο διαμέρισμα.",
+        "Ώρες κοινής ησυχίας: 15:00–17:30 και 23:00–07:00.",
+        "Παρακαλούμε να σέβεστε τους γείτονες και τον κανονισμό της πολυκατοικίας.",
+        "Δεν επιτρέπονται πάρτι και εκδηλώσεις.",
+        "Παρακαλούμε να κλείνετε κλιματισμό και φώτα όταν λείπετε.",
+        "Να κλείνετε τις μπαλκονόπορτες πριν φύγετε, ειδικά όταν έχει αέρα.",
+      ],
+      appliances: [
+        {
+          title: "Πλυντήριο Ρούχων",
+          icon: "washing",
+          summary: "Απλή χρήση βήμα-βήμα για τον επισκέπτη.",
+          steps: [
+            "Τοποθετήστε τα ρούχα χωρίς να γεμίσετε υπερβολικά τον κάδο.",
+            "Βάλτε απορρυπαντικό στη σωστή θήκη.",
+            "Επιλέξτε το κατάλληλο πρόγραμμα.",
+            "Πατήστε Start.",
+            "Όταν τελειώσει, αφήστε την πόρτα ελαφρώς ανοιχτή για αερισμό.",
+          ],
+        },
+        {
+          title: "Κουζίνα & Φούρνος",
+          icon: "oven",
+          summary: "Βασικές οδηγίες χρήσης μαγειρέματος και φούρνου.",
+          steps: [
+            "Επιλέξτε τη λειτουργία μαγειρέματος που θέλετε.",
+            "Ρυθμίστε τη θερμοκρασία ανάλογα με την ανάγκη.",
+            "Χρησιμοποιείτε μόνο κατάλληλα σκεύη για φούρνο.",
+            "Σβήνετε πλήρως τις εστίες και τον φούρνο μετά τη χρήση.",
+          ],
+        },
+        {
+          title: "Κλιματισμός",
+          icon: "air",
+          summary: "Αποδοτική χρήση για ψύξη και θέρμανση.",
+          steps: [
+            "Χρησιμοποιήστε το τηλεχειριστήριο για ενεργοποίηση.",
+            "Προτεινόμενη θερινή ρύθμιση: 25–26°C.",
+            "Να διατηρείτε κλειστά παράθυρα και μπαλκονόπορτες όταν λειτουργεί.",
+            "Παρακαλούμε να το κλείνετε όταν φεύγετε από το διαμέρισμα.",
+          ],
+        },
+        {
+          title: "Θερμοσίφωνας",
+          icon: "heater",
+          summary: "Οδηγίες για ζεστό νερό πριν το ντους.",
+          steps: [
+            "Ανάψτε τον θερμοσίφωνα 20–30 λεπτά πριν το ντους.",
+            "Σβήστε τον μετά τη χρήση για ασφάλεια και εξοικονόμηση ενέργειας.",
+          ],
+        },
+        {
+          title: "Ψυγείο",
+          icon: "fridge",
+          summary: "Χρήσιμες σημειώσεις αποθήκευσης και θερμοκρασίας.",
+          steps: [
+            "Παρακαλούμε να κλείνει σωστά η πόρτα του ψυγείου.",
+            "Μην αλλάζετε τις ρυθμίσεις θερμοκρασίας χωρίς λόγο.",
+            "Αποφύγετε να τοποθετείτε ζεστό φαγητό απευθείας μέσα.",
+          ],
+        },
+      ],
+      areaGuide: [
+        "Παραλιακός δρόμος σε μικρή απόσταση με τα πόδια.",
+        "Σούπερ μάρκετ: να προστεθεί το κοντινότερο κατάστημα.",
+        "Φαρμακείο: να προστεθεί ακριβής διεύθυνση και ωράριο.",
+        "Φούρνος / καφές: να προστεθούν οι προτεινόμενες τοπικές επιλογές.",
+      ],
+      safety: {
+        emergencyTitle: "Έκτακτη Ανάγκη & Χρήσιμα Τηλέφωνα",
+        contacts: [
+          "Υποστήριξη οικοδεσπότη: +30 69X XXX XXXX",
+          "Ευρωπαϊκός αριθμός έκτακτης ανάγκης: 112",
+          "Αστυνομία: 100",
+          "ΕΚΑΒ: 166",
+          "Πυροσβεστική: 199",
+        ],
+        checkoutTitle: "Πριν την Αναχώρηση",
+        checkout: [
+          "Πλύνετε όσα σκεύη χρησιμοποιήσατε και αφήστε την κουζίνα τακτοποιημένη.",
+          "Κλείστε κλιματισμό, φούρνο και φώτα.",
+          "Απορρίψτε τα απορρίμματα στους προβλεπόμενους κάδους.",
+          "Βεβαιωθείτε ότι παράθυρα και μπαλκονόπορτες είναι κλειστά.",
+          "Επιστρέψτε τα κλειδιά ακριβώς όπως έχει συμφωνηθεί.",
+        ],
+      },
+      searchPlaceholder: "Αναζήτηση για Wi‑Fi, αναχώρηση, πλυντήριο...",
+      cta: "Αυτό το prototype μπορεί αργότερα να συνδεθεί με πολύ εύκολη διαδικασία επεξεργασίας για την οικοδέσποινα.",
+      editPanelTitle: "Πώς προτείνω να λειτουργεί για τη Χρυσούλα",
+      editPanelText:
+        "Η δική μου σύσταση για την κανονική παραγωγική έκδοση είναι ένα απλό guest website με δομημένες ενότητες, δίγλωσσο περιεχόμενο και πρόσβαση μέσω QR. Στο επόμενο στάδιο μπορούμε να συνδέσουμε τα κείμενα με πολύ απλή λογική επεξεργασίας, ώστε η Χρυσούλα να αλλάζει Wi‑Fi, κανόνες, οδηγίες συσκευών και τοπικές προτάσεις χωρίς να αγγίζει κώδικα.",
+    },
+  };
+
+  const t = content[language];
+
+  const filteredAppliances = useMemo(() => {
+    if (!query.trim()) return t.appliances;
+    const q = query.toLowerCase();
+    return t.appliances.filter(
+      (item) =>
+        item.title.toLowerCase().includes(q) ||
+        item.summary.toLowerCase().includes(q) ||
+        item.steps.some((step) => step.toLowerCase().includes(q))
+    );
+  }, [query, t]);
+
+  const filteredRules = useMemo(() => {
+    if (!query.trim()) return t.rules;
+    const q = query.toLowerCase();
+    return t.rules.filter((rule) => rule.toLowerCase().includes(q));
+  }, [query, t]);
+
+  const filteredArea = useMemo(() => {
+    if (!query.trim()) return t.areaGuide;
+    const q = query.toLowerCase();
+    return t.areaGuide.filter((item) => item.toLowerCase().includes(q));
+  }, [query, t]);
+
+  const filteredContacts = useMemo(() => {
+    if (!query.trim()) return t.safety.contacts;
+    const q = query.toLowerCase();
+    return t.safety.contacts.filter((item) => item.toLowerCase().includes(q));
+  }, [query, t]);
+
+  const filteredCheckout = useMemo(() => {
+    if (!query.trim()) return t.safety.checkout;
+    const q = query.toLowerCase();
+    return t.safety.checkout.filter((item) => item.toLowerCase().includes(q));
+  }, [query, t]);
+
+  const iconMap = {
+    washing: WashingMachine,
+    oven: FlameKindling,
+    air: AirVent,
+    heater: AlertTriangle,
+    fridge: Refrigerator,
+  };
+
+  const QuickCard = ({ icon: Icon, label, value }) => (
+    <Card className="rounded-3xl border-slate-200 shadow-sm">
+      <CardContent className="p-4 flex items-start gap-3">
+        <div className="rounded-2xl bg-sky-50 p-3">
+          <Icon className="h-5 w-5" />
+        </div>
+        <div>
+          <div className="text-sm text-slate-500">{label}</div>
+          <div className="font-semibold text-slate-800 break-words">{value}</div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-sky-50 via-white to-slate-100">
+      <div className="max-w-6xl mx-auto px-4 py-8 md:py-10">
+        <div className="rounded-[2rem] overflow-hidden border border-slate-200 bg-white shadow-xl mb-8">
+          <div className="relative h-64 md:h-80 bg-[url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop')] bg-cover bg-center">
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-slate-900/20 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
+              <div className="flex flex-wrap items-center gap-2 mb-3">
+                <Badge className="rounded-full bg-white/15 backdrop-blur hover:bg-white/15">Guest Guide</Badge>
+                <Badge className="rounded-full bg-white/15 backdrop-blur hover:bg-white/15"><Waves className="h-3.5 w-3.5 mr-1" /> Sea View</Badge>
+                <Badge className="rounded-full bg-white/15 backdrop-blur hover:bg-white/15"><Home className="h-3.5 w-3.5 mr-1" /> 5th Floor</Badge>
+              </div>
+              <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-2">{t.propertyName}</h1>
+              <p className="text-white/90 text-base md:text-lg max-w-3xl">{t.subtitle}</p>
+            </div>
+          </div>
+
+          <div className="p-5 md:p-6 border-t border-slate-100 bg-slate-50/70">
+            <div className="flex flex-col lg:flex-row gap-3 lg:items-center lg:justify-between">
+              <div className="flex-1 max-w-xl relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                <Input
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder={t.searchPlaceholder}
+                  className="pl-9 rounded-2xl h-11 bg-white"
+                />
+              </div>
+              <div className="flex gap-2">
+                <Button
+                  variant={language === "el" ? "default" : "outline"}
+                  className="rounded-2xl"
+                  onClick={() => setLanguage("el")}
+                >
+                  <Languages className="h-4 w-4 mr-2" /> Ελληνικά
+                </Button>
+                <Button
+                  variant={language === "en" ? "default" : "outline"}
+                  className="rounded-2xl"
+                  onClick={() => setLanguage("en")}
+                >
+                  English
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-8">
+          <QuickCard icon={Wifi} label="Wi‑Fi" value={`${t.quickFacts.wifiName} / ${t.quickFacts.wifiPassword}`} />
+          <QuickCard icon={Clock3} label="Check-in / Check-out" value={`${t.quickFacts.checkIn} • ${t.quickFacts.checkOut}`} />
+          <QuickCard icon={Phone} label="Host Support" value={t.quickFacts.supportPhone} />
+          <QuickCard icon={MapPin} label="Location" value={t.quickFacts.address} />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2 space-y-6">
+            <Card className="rounded-3xl border-slate-200 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-2xl">{t.welcomeTitle}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-slate-700 leading-7">{t.welcomeText}</p>
+              </CardContent>
+            </Card>
+
+            <Card className="rounded-3xl border-slate-200 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-2xl">{t.tabs.rules}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  {filteredRules.map((rule, index) => (
+                    <div key={index} className="flex items-start gap-3 rounded-2xl bg-slate-50 border border-slate-200 p-4">
+                      <div className="h-7 w-7 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center text-sm font-semibold shrink-0">
+                        {index + 1}
+                      </div>
+                      <div className="text-slate-700 leading-7">{rule}</div>
+                    </div>
+                  ))}
+                  {filteredRules.length === 0 && <p className="text-slate-500">No matching results.</p>}
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="rounded-3xl border-slate-200 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-2xl">{t.tabs.appliances}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Accordion type="single" collapsible className="w-full space-y-3">
+                  {filteredAppliances.map((item, index) => {
+                    const Icon = iconMap[item.icon] || KeyRound;
+                    return (
+                      <AccordionItem key={index} value={`item-${index}`} className="border rounded-2xl px-4 bg-slate-50 border-slate-200">
+                        <AccordionTrigger className="hover:no-underline">
+                          <div className="flex items-center gap-3 text-left">
+                            <div className="rounded-2xl bg-white p-2 border border-slate-200">
+                              <Icon className="h-5 w-5 text-slate-700" />
+                            </div>
+                            <div>
+                              <div className="font-semibold text-slate-800">{item.title}</div>
+                              <div className="text-sm text-slate-500">{item.summary}</div>
+                            </div>
+                          </div>
+                        </AccordionTrigger>
+                        <AccordionContent>
+                          <ol className="list-decimal pl-5 space-y-2 text-slate-700 leading-7 pb-2">
+                            {item.steps.map((step, i) => (
+                              <li key={i}>{step}</li>
+                            ))}
+                          </ol>
+                        </AccordionContent>
+                      </AccordionItem>
+                    );
+                  })}
+                </Accordion>
+                {filteredAppliances.length === 0 && <p className="text-slate-500">No matching results.</p>}
+              </CardContent>
+            </Card>
+
+            <Card className="rounded-3xl border-slate-200 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-2xl">{t.tabs.area}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid gap-3">
+                  {filteredArea.map((item, index) => (
+                    <div key={index} className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-slate-700 leading-7">
+                      {item}
+                    </div>
+                  ))}
+                  {filteredArea.length === 0 && <p className="text-slate-500">No matching results.</p>}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="space-y-6">
+            <Card className="rounded-3xl border-slate-200 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-xl flex items-center gap-2"><ShieldCheck className="h-5 w-5" /> {t.safety.emergencyTitle}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  {filteredContacts.map((item, index) => (
+                    <div key={index} className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-slate-700">
+                      {item}
+                    </div>
+                  ))}
+                  {filteredContacts.length === 0 && <p className="text-slate-500">No matching results.</p>}
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="rounded-3xl border-slate-200 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-xl">{t.safety.checkoutTitle}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  {filteredCheckout.map((item, index) => (
+                    <div key={index} className="flex gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                      <div className="shrink-0"><KeyRound className="h-5 w-5 text-slate-600" /></div>
+                      <div className="text-slate-700 leading-7">{item}</div>
+                    </div>
+                  ))}
+                  {filteredCheckout.length === 0 && <p className="text-slate-500">No matching results.</p>}
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="rounded-3xl border-slate-200 shadow-sm bg-sky-50/60">
+              <CardHeader>
+                <CardTitle className="text-xl">{t.editPanelTitle}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-slate-700 leading-7 mb-4">{t.editPanelText}</p>
+                <div className="rounded-2xl bg-white border border-slate-200 p-4 text-sm text-slate-600 leading-6">
+                  {t.cta}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
